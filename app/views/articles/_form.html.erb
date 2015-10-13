@@ -1,0 +1,39 @@
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+  <br>
+    <%= f.text_field :title, required: true, :placeholder => "Article Title", autofocus: true, class: "text-box" %>
+  </div>
+  <div>
+  <br>
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
+  <div>
+  <br>
+    <%= f.text_area :post, required: true, :placeholder => "Type your article", class: "text-area" %>
+  </div>
+  <div>
+  <br>
+    <%= f.date_select :postdate %>
+  </div>
+  <div>
+  <br>
+    <%= f.text_field :keyword, required: true, :placeholder => "keywords Here", class: "text-box" %>
+  </div>
+  <div>
+  <br>
+    <%= f.submit "Post Article", class: "btn-submit" %>
+  </div>
+<% end %>
+<br><br>
